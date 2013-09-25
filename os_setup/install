@@ -1,3 +1,21 @@
-ircd-hybrid
-nginx
+apt-get update
+apt-get upgrade
+system config files
+    from github misc project
 vim
+ircd-hybrid
+    config:
+    in /etc/ircd-hybrid/ircd.conf
+        under listen{ section:
+            host = "0.0.0.0"
+        under operator[
+            user = "*@*"
+        change server name and description at the top
+    update motd
+        in /etc/ircd-hybrid/ircd.motd
+    sudo /etc/init.d/ircd-hybrid stop
+    sudo /etc/init.d/ircd-hybrid start
+    confirm system ip
+        curl ifconfig.me
+irssi
+nginx
