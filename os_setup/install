@@ -2,6 +2,7 @@ apt-get update
 apt-get upgrade
 system config files
     from github misc project
+fortune
 vim
 ircd-hybrid
     config:
