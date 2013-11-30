@@ -2,8 +2,9 @@ apt-get update
 apt-get upgrade
 system config files
     from github misc project
-fortune
 vim
+clang
+fortune
 ircd-hybrid
     config:
     in /etc/ircd-hybrid/ircd.conf
