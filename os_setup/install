@@ -5,6 +5,7 @@ system config files
 vim
 clang
 fortune
+figlet
 http://parkersamp.com/2010/10/howto-creating-a-dynamic-motd-in-linux/
 ircd-hybrid
     config:
