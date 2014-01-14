@@ -1,0 +1,34 @@
+Creating and using libraries with gnu tools
+===========================================
+
+Static archive (.a):
+--------------------
+Compile:
+    cc -Wall -c ctest1.c ctest2.c
+Package as static archive
+    ar -cvq libctest.a ctest1.o ctest2.o
+OR:
+    ar rcs libctest.a ctest.o
+list files in library (confirm): ar-t libctest.a
+using library:
+    cc -o <execName> main.c libctest.a
+    cc -o <execName> main.c -L/path/to/library-directory -lctest
+
+Dynamically linked (.so) shared object:
+---------------------------------------
+    cc -Wall -fPIC -c *.c
+    cc -shared -Wl,-soname,libctest.so.1 -o libctest.so.1.0 *.o
+    mv libctest.so.1.0 /opt/lib
+    ln -sf /opt/lib/libctest.so.1.0 /opt/lib/libctest.so.1
+    ln -sf /opt/lib/libctest.so.1.0 /opt/lib/libctest.so
+
+creates libctest.so.1.0 and links to it
+first ln allows -lctest to work
+second ln allows run time binding to work
+
+compile with so s
+    gcc -Wall -I/path/to/includes -L/path/to/libraries main.c -lctest -o main
+use:
+    gcc -Wall -L/opt/lib main.c -lctest -o main
+shared library dependencies of an executable can be listed with ldd <execName>
+
