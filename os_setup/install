@@ -1,5 +1,7 @@
 apt-get update
 apt-get upgrade
+usermod -l chris pi
+groupmod --new-name chris pi
 system config files
     from github misc project
 vim
