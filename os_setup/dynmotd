@@ -16,10 +16,10 @@ echo -e "\033[1;32m
 $(figlet -c -f block VAK)
 \033[0;35m+++++++++++++++++: \033[0;37mSystem Data\033[0;35m :+++++++++++++++++++
 + \033[0;37mHostname \033[0;35m = \033[1;32m`hostname`
-\033[0;35m+ \033[0;37mAddress \033[0;35m  = \033[1;32m204.93.222.167
+\033[0;35m+ \033[0;37mAddress \033[0;35m  = \033[1;32m184.57.138.121
 \033[0;35m+ \033[0;37mKernel \033[0;35m   = \033[1;32m`uname -r`
-\033[0;35m+ \033[0;37mUptime \033[0;35m   = \033[1;32m`uptime | awk {'print $2, $3'}`
-\033[0;35m+ \033[0;37mCPU \033[0;35m      =\033[1;32m `cat /proc/cpuinfo | grep Processor | awk {'print $3, $4'}`
+\033[0;35m+ \033[0;37mUptime \033[0;35m   = \033[1;32m`uptime | awk {'print $2, $3, $4, $5'}`
+\033[0;35m+ \033[0;37mCPU \033[0;35m      =\033[1;32m `cat /proc/cpuinfo | grep -i 'model name' | awk {'print $4, $5'}`
 \033[0;35m+ \033[0;37mMemory \033[0;35m   = \033[1;32m`cat /proc/meminfo | grep MemTotal | awk {'print $2'}` kB
 \033[0;35m++++++++++++++++++: \033[0;37mUser Data\033[0;35m :++++++++++++++++++++
 + \033[0;37mUsername \033[0;35m = \033[1;32m`whoami`
