@@ -8,6 +8,8 @@ vim
 clang
 fortune
 figlet
+doxygen(?)
+valgrind/alleyoop(?)
 http://parkersamp.com/2010/10/howto-creating-a-dynamic-motd-in-linux/
 install dynmotd and temp files in /usr/local/bin/ with a+x
 ircd-hybrid
