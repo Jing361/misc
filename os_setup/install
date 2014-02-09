@@ -27,4 +27,4 @@ ircd-hybrid
     confirm system ip
         curl ifconfig.me
 irssi
-nginx
+nginx/apache2
