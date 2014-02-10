@@ -17,10 +17,14 @@ using library:
 Dynamically linked (.so) shared object:
 ---------------------------------------
     cc -Wall -fPIC -c *.c
-    cc -shared -Wl,-soname,libctest.so.1 -o libctest.so.1.0 *.o
-    mv libctest.so.1.0 /opt/lib
-    ln -sf /opt/lib/libctest.so.1.0 /opt/lib/libctest.so.1
-    ln -sf /opt/lib/libctest.so.1.0 /opt/lib/libctest.so
+    cc -shared -fPIC -Wl,-soname,libctest.so.1 -o libctest.so.1.0 *.o -lc
+    mv libctest.so.1.0 /usr/lib
+    ln -sf /usr/lib/libctest.so.1.0 /usr/lib/libctest.so.1
+    ln -sf /usr/lib/libctest.so.1.0 /usr/lib/libctest.so
+    (running ldconfig -n <directory with shared libraries> may create these links as well)
+    
+Using 'ldd' will show shared library dependencies of a program.
+If smaller, more efficient code is desired use -fpic, but -fPIC is gauranteed to work.
 
 creates libctest.so.1.0 and links to it
 first ln allows -lctest to work
@@ -32,3 +36,21 @@ use:
     gcc -Wall -L/opt/lib main.c -lctest -o main
 shared library dependencies of an executable can be listed with ldd <execName>
 
+Dynamicall Loaded (DL) Libraries
+--------------------------------
+Invoked during run time, good for allowing 'modules' in a program.
+These libraries are created/built/installed just as the previous library types, and are invoked differently.
+use:#include<dlfcn.h>
+call:dlopen()
+    void * dlopen(const char *filename, int flag);
+both for linux and solaris only
+use glib for better portability
+or tools like libtdl or CORBA
+
+MISC
+----
+nm lists all symbols for static or shared libraries
+
+Resources
+---------
+http://www.dwheeler.com/program-library/Program-Library-HOWTO/t1.html
