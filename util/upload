@@ -1,0 +1,6 @@
+To properly upload to vak:
+
+Use the pscp.exe from the PuTTY suite of programs.
+pscp.exe -sftp file.extension user@184.57.138.121:directory/subirectory
+
+directory/subdirectory resolves to /home/user/directory/subdirectory
