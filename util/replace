@@ -4,7 +4,7 @@ OLD=$1
 NEW=$2
 WD=$(pwd)
 DPATH=$WD/$3
-BPATH="$WD/$3/bakup"
+BPATH="$WD/bakup"
 TFILE="/tmp/out.tmp.$$"
 
 [ ! -d $BPATH ] && mkdir -p $BPATH || :

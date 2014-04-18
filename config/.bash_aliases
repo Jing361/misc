@@ -1,32 +1,36 @@
-alias lt='ls -lrt'
 alias c='clear'
 alias h='history'
 
 alias jp='python -m json.tool'
-alias httpd='python -m SimpleHTTPServer'
+#alias httpd='python -m SimpleHTTPServer'
 
 alias slb='screen -r -d leftbot || screen -S leftbot'
 alias slt='screen -r -d lefttop || screen -S lefttop'
 alias sr='screen -r -d right || screen -S right'
 
-alias grep='grep -i'
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep -i --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+else
+  alias grep='grep -i'
 fi
 
-# some more ls aliases
-alias ll='ls -alFh'
-alias la='ls -A'
+# some ls aliases
+alias ll='ls -lh'
+alias la='ls -Alh'
+alias lt='ls -lrt'
 alias l='ls -CF'
+
+alias f='fg'
+alias j='jobs'
+alias scheme='tinyscheme'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
