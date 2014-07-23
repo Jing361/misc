@@ -30,3 +30,9 @@ irssi
 apache2
 install php and mysql as here:
 https://www.digitalocean.com/community/articles/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu
+update mysql config:
+/etc/mysql/my.cnf
+  [mysqld]
+  ...
+  bind-address = <local address;192.168.0.100>
+  ...
