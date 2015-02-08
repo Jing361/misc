@@ -23,6 +23,7 @@
 	co = checkout
 	df = diff
 	lg = log -p
+	ls = ls-files
     ss = stash save
     sl = stash list
     sp = stash pop
