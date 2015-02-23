@@ -16,6 +16,8 @@ using library:
 
 Dynamically linked (.so) shared object:
 ---------------------------------------
+//Here I actually defer to cprogramming.com
+//That tutorial actually worked correctly first go.  Some of the below doesn't like to work
     cc -Wall -fPIC -c *.c
     cc -shared -fPIC -Wl,-soname,libctest.so.1 -o libctest.so.1.0 *.o -lc
     mv libctest.so.1.0 /usr/lib
@@ -56,3 +58,4 @@ Resources
 http://www.dwheeler.com/program-library/Program-Library-HOWTO/t1.html
 http://tldp.org/HOWTO/Program-Library-HOWTO/
 http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html
+http://www.cprogramming.com/tutorial/shared-libraries-linux-gcc.html
