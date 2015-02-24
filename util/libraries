@@ -55,9 +55,60 @@ These libraries are created/built/installed just as the previous library types, 
 use:#include<dlfcn.h>
 call:dlopen()
     void * dlopen(const char *filename, int flag);
-both for linux and solaris only
+for linux and solaris only
 use glib for better portability
 or tools like libtdl or CORBA
+
+compile as:
+libHelloPlugin.so:helloPlugin.o
+    $(CC) -shared -o libHelloPlugin.so helloPlugin.o
+
+helloPlugin.o:helloPlugin.cc
+    $(CC) $(cflags) $(flags) -fPIC helloPlugin.cc
+
+main:main.o libHelloPlugin.so
+    $(CC) -L. -Wl,-rpath=$(PWD) main.o -o $(name) -lHelloPlugin -ldl
+
+main.o:main.cc
+    $(CC) $(cflags) $(flags) main.cc
+
+Or, for main dependency:
+    $(CC) -L. main.o -o $(name) -lHelloPlugin
+and export constant location of so library as:
+    export LD_LIBRARY_PATH=$(LIBRARY_LOCATION):$(LD_LIBRARY_PATH)
+this export should be done on installation of library, and possibly in bashrc or bash_profile
+sample helloworld main file as:
+
+int main(int argc, char** argv){
+    void* handle;
+    typedef plugin*(*create_t)();
+    typedef void(*delete_t)(plugin*);
+    create_t create;
+    delete_t del;
+    char* error;
+    handle = dlopen("./libHelloPlugin.so", RTLD_LAZY);
+    if(!handle){
+        cerr << dlerror() << endl;
+        return 1;
+    }
+    create = (create_t)dlsym(handle, "create");
+    if((error = dlerror()) != 0){
+        cerr << error << endl;
+        return 1;
+    }
+    del = (delete_t)dlsym(handle, "destroy");
+    if((error = dlerror()) != 0){
+        cerr << error << endl;
+        return 0;
+    }
+    plugin *pi;
+    pi = (*create)();
+    pi->run();
+    (*del)(pi);
+    dlclose(handle);
+    return 0;
+}
+Where "create" and "destroy" both exist in helloPlugin.cc, and create and destroy plugin objects respectivel
 
 MISC
 ----
