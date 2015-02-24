@@ -38,6 +38,16 @@ use:
     gcc -Wall -L/opt/lib main.c -lctest -o main
 shared library dependencies of an executable can be listed with ldd <execName>
 
+//Tested makefile segment as:
+libHelloPlugin.so:helloPlugin.o
+    $(CC) -shared -o libHelloPlugin.so helloPlugin.o
+helloPlugin.o:helloPlugin.cc
+    $(CC) $(cflags) $(flags) -fPIC helloPlugin.cc
+main:main.o libHelloPlugin.so
+    $(CC) -L. -Wl,-rpath=$(PWD) main.o -o $(name) -lHelloPlugin
+main.o:main.cc
+    $(CC) $(cflags) $(flags) main.cc
+
 Dynamicall Loaded (DL) Libraries
 --------------------------------
 Invoked during run time, good for allowing 'modules' in a program.
