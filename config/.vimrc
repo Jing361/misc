@@ -8,8 +8,8 @@ syn on
 
 set tabstop=2
 set shiftwidth=2
-set softtabstop=2
-set expandtab
+set softtabstop=0
+set smarttab
 set backspace=indent,eol,start
 
 autocmd FileType python set autoindent
@@ -28,9 +28,11 @@ map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 set paste
 set ruler
 set number
+set relativenumber
 
 filetype off
 
 filetype plugin indent on
 
 nnoremap<cr> :noh<cr><cr>:<backspace>
+set expandtab
