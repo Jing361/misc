@@ -24,11 +24,12 @@
 	df = diff
 	lg = log -p
 	ls = ls-files
-    ss = stash save
-    sl = stash list
-    sp = stash pop
-    sd = stash drop
-	plog = "!git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+	ss = stash save
+	sl = stash list
+	sp = stash pop
+	sd = stash drop
+	#plog = "!git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+	plog = log --graph --all --decorate --oneline --color
 	pushme = "!git pull && git push origin $(git symbolic-ref HEAD | sed 's/refs\\/heads\\///g')"
 [user]
 	name = Chris Samuelson 
@@ -38,4 +39,4 @@
 [branch]
 	autosetupmerge = true
 [core]
-    editor = /usr/bin/vim
+	editor = /usr/bin/vim
