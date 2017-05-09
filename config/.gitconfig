@@ -22,6 +22,7 @@
 	br = branch
 	co = checkout
 	df = diff
+	dif = diff
 	lg = log -p
 	ls = ls-files
 	ss = stash save
@@ -40,3 +41,11 @@
 	autosetupmerge = true
 [core]
 	editor = /usr/bin/vim
+[status]
+	submoduleSummary = true
+[diff]
+	submodule = log
+[fetch]
+	recurseSubmodules = on-demand
+[pull]
+	rebase = preserve
