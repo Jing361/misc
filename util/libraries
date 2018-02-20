@@ -9,10 +9,12 @@ Package as static archive
     ar -cvq libctest.a ctest1.o ctest2.o
 OR:
     ar rcs libctest.a ctest.o
+
 list files in library (confirm): ar-t libctest.a
-using library:
+
+using a library:
     cc -o <execName> main.c libctest.a
-    cc -o <execName> main.c -L/path/to/library-directory -lctest
+    cc -o <execName> main.c -L/path/to/library/directory -lctest
 
 Dynamically linked (.so) shared object:
 ---------------------------------------
@@ -24,7 +26,7 @@ Dynamically linked (.so) shared object:
     ln -sf /usr/lib/libctest.so.1.0 /usr/lib/libctest.so.1
     ln -sf /usr/lib/libctest.so.1.0 /usr/lib/libctest.so
     (running ldconfig -n <directory with shared libraries> may create these links as well)
-    
+
 Using 'ldd' will show shared library dependencies of a program.
 If smaller, more efficient code is desired use -fpic, but -fPIC is gauranteed to work.
 
@@ -48,11 +50,13 @@ main:main.o libHelloPlugin.so
 main.o:main.cc
     $(CC) $(cflags) $(flags) main.cc
 
-Dynamicall Loaded (DL) Libraries
+Dynamically Loaded (DL) Libraries
 --------------------------------
 Invoked during run time, good for allowing 'modules' in a program.
 These libraries are created/built/installed just as the previous library types, and are invoked differently.
+
 use:#include<dlfcn.h>
+
 call:dlopen()
     void * dlopen(const char *filename, int flag);
 for linux and solaris only
@@ -80,35 +84,55 @@ this export should be done on installation of library, and possibly in bashrc or
 sample helloworld main file as:
 
 int main(int argc, char** argv){
-    void* handle;
     typedef plugin*(*create_t)();
     typedef void(*delete_t)(plugin*);
+
+    void* handle;
     create_t create;
     delete_t del;
     char* error;
+
+    // obtain handle to library from dlopen
     handle = dlopen("./libHelloPlugin.so", RTLD_LAZY);
+
+    // handle errors
     if(!handle){
         cerr << dlerror() << endl;
         return 1;
     }
+
+    // get handle to symbol called 'create' (will be a function, not sure if can be variable)
     create = (create_t)dlsym(handle, "create");
+
+    // handle errors
     if((error = dlerror()) != 0){
         cerr << error << endl;
         return 1;
     }
+
+    // get handle to symbol called 'destroy'
     del = (delete_t)dlsym(handle, "destroy");
+
+    // handle errors
     if((error = dlerror()) != 0){
         cerr << error << endl;
         return 0;
     }
+
+    // whatever a 'plugin' is (should be defined by program, but shared with plugin/library)
     plugin *pi;
+
+    // create, use, and destroy the plugin.  lifetime could be much longer, but this is for demonstration.
     pi = (*create)();
     pi->run();
     (*del)(pi);
+
+    // close handle to library
     dlclose(handle);
+
     return 0;
 }
-Where "create" and "destroy" both exist in helloPlugin.cc, and create and destroy plugin objects respectivel
+Where "create" and "destroy" both exist in helloPlugin.cc, and create and destroy plugin objects respectively
 
 MISC
 ----
@@ -120,3 +144,4 @@ http://www.dwheeler.com/program-library/Program-Library-HOWTO/t1.html
 http://tldp.org/HOWTO/Program-Library-HOWTO/
 http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html
 http://www.cprogramming.com/tutorial/shared-libraries-linux-gcc.html
+
