@@ -85,7 +85,7 @@ $(objdir)/%.o:|$(CREATEDIRS)
 endif
 
 clean:
-	-@$(RM) -rf $(objectdir) *.o *.exe *.stackdump $(dependdir) $(binarydir) $(name)
+	-@$(RM) -rf $(objectdir) *.o *.exe *.stackdump $(dependdir) $(binarydir) $(name) $(exportdir)
 
 #file partially written based on information from:
 #http://scottmcpeak.com/autodepend/autodepend.html
