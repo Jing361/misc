@@ -1,0 +1,18 @@
+List of valuable resources:
+
+Online compilers:
+  Coliru can be embedded to other sites
+http://coliru.stacked-crooked.com/
+  Onlinegdb allows for debugging
+https://www.onlinegdb.com/
+  godbolt/compiler explorer has some interesting flags available such as -Wlifetime and is open source
+https://godbolt.org/
+  Sort-of an online compiler; builds and presents errors, along with an 'expanded' view of code, making any short hand things explicit.
+  e.g. for( auto line : file ) becomes expanded to show the underlying mechanics;
+  i.e. auto begin = file.begin(); for( ; begin != end; ++begin)
+  Useful for demonstrating things the compiler is assuming that are not obvious
+https://cppinsights.io/
+
+C++ reference sheet:
+  Reference of the c++ standard
+https://en.cppreference.com/w/
