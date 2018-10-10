@@ -2,16 +2,22 @@ List of valuable resources:
 
 Online compilers:
   Coliru can be embedded to other sites
-http://coliru.stacked-crooked.com/
+    http://coliru.stacked-crooked.com/
   Onlinegdb allows for debugging
-https://www.onlinegdb.com/
+    https://www.onlinegdb.com/
   godbolt/compiler explorer has some interesting flags available such as -Wlifetime and is open source
-https://godbolt.org/
+    https://godbolt.org/
   Sort-of an online compiler; builds and presents errors, along with an 'expanded' view of code, making any short hand things explicit.
   e.g. for( auto line : file ) becomes expanded to show the underlying mechanics;
   i.e. auto begin = file.begin(); for( ; begin != end; ++begin)
   Useful for demonstrating things the compiler is assuming that are not obvious
-https://cppinsights.io/
+    https://cppinsights.io/
+  wandbox has support for lots of compilers and options; provides a vim plugin;
+  and provides some additional diagnostic information (the extent of which I do not yet know)
+    https://wandbox.org/
+
+Online benchmark tool:
+  http://quick-bench.com/
 
 C++ reference sheet:
   Reference of the c++ standard
