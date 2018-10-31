@@ -15,6 +15,8 @@ Online compilers:
   wandbox has support for lots of compilers and options; provides a vim plugin;
   and provides some additional diagnostic information (the extent of which I do not yet know)
     https://wandbox.org/
+  ideone
+    https://ideone.com/
 
 Online benchmark tool:
   http://quick-bench.com/
