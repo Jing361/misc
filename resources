@@ -40,3 +40,7 @@ General resource
   competency matrix
     http://sijinjoseph.com/programmer-competency-matrix/
     Generally useful, if not brutal, for assessing one's abilities
+ 
+  bind mount
+    https://unix.stackexchange.com/questions/198542/what-happens-when-you-mount-over-an-existing-folder-with-contents
+    information about rebinding an existing file system to another location within linux, such that both are valid
