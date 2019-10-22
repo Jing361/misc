@@ -32,6 +32,9 @@
 	#plog = "!git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 	plog = log --graph --all --decorate --oneline --color
 	pushme = "!git pull && git push origin $(git symbolic-ref HEAD | sed 's/refs\\/heads\\///g')"
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
+	ignored = !git ls-files -v | grep "^[[:lower:]]"
 [user]
 	name = Chris Samuelson 
 	email = chris.sam55@gmail.com 
