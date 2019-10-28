@@ -30,6 +30,12 @@ C++ reference sheet:
   Reference of the c++ standard
 https://en.cppreference.com/w/
 
+c++ templar and c++ templight
+  https://baptiste-wicht.com/posts/2016/02/use-templight-and-templar-to-debug-cpp-templates.html
+  https://github.com/schulmar/Templar
+  https://www.reddit.com/r/cpp/comments/44qkik/use_templight_and_templar_to_debug_c_templates/
+  https://github.com/mikael-s-persson/templight
+
 Practice
   Exercism
     Mentored programming practice/learning
