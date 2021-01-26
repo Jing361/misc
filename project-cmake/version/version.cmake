@@ -1,5 +1,15 @@
+# ISSUES:
+# TODAY is cached, and therefore reflects configure time
+# I'd like this to correspond with a target, so that it can be self-contained
+# and live entirely in its own directory.  additionally, that provides more
+# information for when to update (may conflict with datetime?), and having a target
+# for linking the header file is nice/neat/expected cmake interface
+
 execute_process(COMMAND git log --pretty=format:'%h' -n 1
                 OUTPUT_VARIABLE GIT_REV
+                ERROR_QUIET)
+execute_process(COMMAND git show --quiet --date=format-local:%Y-%m-%dT%H:%M:%SZ --format=%cd
+                OUTPUT_VARIABLE GIT_DATE
                 ERROR_QUIET)
 
 # Check whether we got any revision (which isn't
@@ -26,6 +36,7 @@ else()
     string(STRIP "${GIT_DIFF}" GIT_DIFF)
     string(STRIP "${GIT_TAG}" GIT_TAG)
     string(STRIP "${GIT_BRANCH}" GIT_BRANCH)
+    string(STRIP "${GIT_DATE}" GIT_DATE)
 endif()
 
 string(TIMESTAMP TODAY "%Y-%m-%dT%H:%M:%SZ")
@@ -33,6 +44,8 @@ string(TIMESTAMP TODAY "%Y-%m-%dT%H:%M:%SZ")
 MESSAGE(STATUS "REV ${GIT_REV}")
 MESSAGE(STATUS "BRANCH ${GIT_BRANCH}")
 MESSAGE(STATUS "Date ${TODAY}")
+MESSAGE(STATUS "Tag ${GIT_TAG}")
+MESSAGE(STATUS "VCS Date ${GIT_DATE}")
 
 set(VERSION
 "#ifndef AUTO_VERSION_HH
@@ -42,19 +55,24 @@ set(VERSION
 // into the library by the version.cmake script
 namespace Version{
 
+namespace {
+
 struct VersionData{
     const char* TAG = \"${GIT_TAG}\";
     const char* REV = \"${GIT_REV}${GIT_DIFF}\";
     const char* BRANCH = \"${GIT_BRANCH}\";
-    const char* DATE = \"${TODAY}\";
+    const char* CONFIG_DATE = \"${TODAY}\";
+    const char* VCS_DATE = \"${GIT_DATE}\";
+    const char* BUILD_DATE = \"__DATE__ __TIME__\";
 };
+
+}
 
 static inline const VersionData version;
 
 }
 
 #endif
-
 ")
 
 SET(VERSION_FILE ${CMAKE_CURRENT_SOURCE_DIR}/version.hh)
