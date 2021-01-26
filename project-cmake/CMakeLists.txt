@@ -1,0 +1,10 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.18)
+
+GET_FILENAME_COMPONENT(ProjectId ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+STRING(REPLACE " " "_" ProjectId ${ProjectId})
+
+PROJECT(${ProjectId})
+
+INCLUDE(version/get_version.cmake)
+
+ADD_SUBDIRECTORY(core)
