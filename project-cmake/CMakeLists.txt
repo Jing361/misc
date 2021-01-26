@@ -5,6 +5,6 @@ STRING(REPLACE " " "_" ProjectId ${ProjectId})
 
 PROJECT(${ProjectId})
 
-INCLUDE(version/get_version.cmake)
+INCLUDE(version/version.cmake)
 
 ADD_SUBDIRECTORY(core)
