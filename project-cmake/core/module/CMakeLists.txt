@@ -35,3 +35,18 @@ IF(NOT TEST_COUNT EQUAL 0)
                           ${ProjectId})
 ENDIF()
 
+# c++20
+SET_TARGET_PROPERTIES(${ProjectId} PROPERTIES
+                      CXX_STANDARD 20
+                      CXX_STANDARD_REQUIRED YES)
+TARGET_COMPILE_FEATURES(${PROJECT_NAME}
+                        PUBLIC
+                        cxx_std_20)
+
+# strong warnings
+TARGET_COMPILE_OPTIONS(${ProjectId}
+                       PRIVATE
+                       $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+                       -Wall -Wextra -pedantic>
+                       $<$<CXX_COMPILER_ID:MSVC>:
+                       /W4>)
