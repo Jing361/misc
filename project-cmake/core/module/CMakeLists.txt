@@ -25,15 +25,7 @@ TARGET_INCLUDE_DIRECTORIES(${ProjectId}
                            PUBLIC header
                            PRIVATE include)
 
-FILE(GLOB TEST_FILES
-     ${PROJECT_SOURCE_DIR}/test/*)
-LIST(LENGTH TEST_FILES TEST_COUNT)
-
-IF(NOT TEST_COUNT EQUAL 0)
-    ADD_EXECUTABLE(${ProjectId}_TEST ${TEST_FILES})
-    TARGET_LINK_LIBRARIES(${ProjectId}_TEST
-                          ${ProjectId})
-ENDIF()
+ADD_SUBDIRECTORY(test)
 
 # c++20
 SET_TARGET_PROPERTIES(${ProjectId} PROPERTIES
