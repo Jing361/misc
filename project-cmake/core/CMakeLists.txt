@@ -15,3 +15,6 @@ FOREACH(subdir ${SUBDIRS})
   MESSAGE(STATUS "Configuring ${subdir}")
   ADD_SUBDIRECTORY(${subdir})
 ENDFOREACH()
+
+# It might be cool to turn the contents of module/CMakeLists.txt into a function
+#   or macro or something, and basically traverse the entire project from here
